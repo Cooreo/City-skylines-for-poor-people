@@ -11,7 +11,11 @@ cards you have to resolve. The whole run takes 30–60 minutes.
 GitHub Pages site — `index.html` loads native ES modules and the browser does
 the rest. Every building, citizen and car is drawn procedurally into a canvas.
 
-```
+### [▶ Play it in your browser](https://cooreo.github.io/City-skylines-for-poor-people/)
+
+Or serve the repository root yourself:
+
+```bash
 npm test                      # 47 tests in ~15s, no browser needed
 python3 -m http.server 8080   # then open http://localhost:8080
 node tools/balance-report.mjs # print the actual balance curve

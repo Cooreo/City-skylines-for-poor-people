@@ -13,6 +13,8 @@ no backend, no binary assets: the repository root *is* the GitHub Pages site.
 
 ## Quick start
 
+Play it online: <https://cooreo.github.io/City-skylines-for-poor-people/>
+
 ```bash
 # play it
 python3 -m http.server 8080      # then open http://localhost:8080
