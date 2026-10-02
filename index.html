@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16213E">
+<meta name="description" content="Micro Metropolis - a small, charming city builder that runs entirely in your browser. No install, no account, no backend.">
+<title>Micro Metropolis</title>
+<link rel="stylesheet" href="styles/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>%F0%9F%8F%99</text></svg>">
+</head>
+<body>
+
+<!-- The city. The only canvas on the page; everything else is DOM. -->
+<canvas id="city" aria-label="City map" role="img"></canvas>
+
+<!-- Top bar: budget, population, happiness, date, speed -->
+<header id="hud-top" class="hud"></header>
+
+<!-- Bottom palette: build menu, tax level, coverage, demand -->
+<footer id="hud-bottom" class="hud"></footer>
+
+<!-- Right side inspector for the selected structure -->
+<aside id="inspector" class="hud" aria-live="polite"></aside>
+
+<!-- Treasury breakdown, opened from the cash stat -->
+<section id="budget" class="hud panel" aria-live="polite"></section>
+
+<!-- Toast stack and modal overlays -->
+<div id="toasts" aria-live="polite"></div>
+<div id="overlay"></div>
+
+<noscript>
+  <div class="noscript">
+    <h1>Micro Metropolis</h1>
+    <p>This game is written in JavaScript and needs it enabled to run.</p>
+  </div>
+</noscript>
+
+<script type="module">
+  import { App } from './src/app.js';
+
+  const canvas = document.getElementById('city');
+  const start = () => {
+    try {
+      window.game = new App({ canvas });
+    } catch (err) {
+      console.error(err);
+      document.getElementById('overlay').innerHTML =
+        '<div class="overlay-backdrop soft"><div class="sheet"><h2 class="sheet-title">Something broke</h2>' +
+        '<p class="sheet-note">' + String(err && err.message ? err.message : err) + '</p></div></div>';
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+</script>
+</body>
+</html>

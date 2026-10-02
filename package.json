@@ -1,0 +1,16 @@
+{
+  "name": "micro-metropolis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A small, charming city builder that runs entirely in the browser. No build step, no backend.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "test": "node --test test/*.test.js",
+    "test:sim": "node --test test/sim.test.js",
+    "test:boot": "node --test test/boot.test.js",
+    "balance": "node tools/balance-report.mjs"
+  },
+  "keywords": ["game", "city-builder", "canvas", "vanilla-js", "github-pages"]
+}

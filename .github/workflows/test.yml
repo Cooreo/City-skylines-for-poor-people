@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, 'arena/**']
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # The simulation is pure JS, so the whole balance suite runs headless.
+      - name: Simulation tests
+        run: node --test test/sim.test.js
+      # The client boot path runs against a DOM stub (no browser needed).
+      - name: Boot tests
+        run: node --test test/boot.test.js
+      # Guard against accidental binary assets and stray build output.
+      - name: Check for build artifacts
+        run: |
+          if git ls-files | grep -E '\.(png|jpg|jpeg|gif|webp|mp3|ogg|wav|zip)$'; then
+            echo "::error::Binary assets should not be committed; the game is fully procedural."
+            exit 1
+          fi
+          echo "No binary assets. Good."
