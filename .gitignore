@@ -1,0 +1,16 @@
+# Generated artifacts. The game ships as text only, so anything binary here is
+# a mistake (CI enforces this).
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp3
+*.ogg
+*.wav
+*.zip
+
+# Local
+node_modules/
+.DS_Store
+*.log
